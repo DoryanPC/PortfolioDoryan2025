@@ -1,0 +1,45 @@
+<div
+  class="max-w-lg shadow-lg lg:mt-5 md:mt-8 sm:mt-8 mt-8 bg-card border-radius-card min-h-[40rem] h-auto flex flex-col sm:w-full"
+>
+  <img
+    class="img-card-project w-full h-auto"
+    [ngStyle]="{
+      filter: isFoggy
+        ? 'blur(8px) brightness(75%)'
+        : 'blur(0px) brightness(100%)',
+      transition: 'filter 2.5s ease-in-out 0.5s'
+    }"
+    [src]="'../../../assets/Project/' + Pathimg"
+    [alt]="Name"
+    #imageElement
+  />
+
+  <!-- Contenedor flexible que ocupa todo el espacio restante -->
+  <div class="flex flex-col justify-between flex-1">
+    <div class="px-6 py-4">
+      <div
+        class="font-bold md:text-2xl lg:text-3xl sm:text-3xl text-2xl mb-2 tittle-card"
+      >
+        {{ Name }}
+      </div>
+      <p
+        class="mt-3 lg:text-3xl md:text-2xl sm:text-2xl text-2xl subtittle-color subtittle-size"
+      >
+        Developed for <strong>{{ client }}</strong>
+      </p>
+      <p class="subtittle-color text-1xl mt-5">
+        {{ Description }}
+      </p>
+    </div>
+
+    <!-- Fila de tecnologías al final -->
+    <div id="row-badges" class="px-6 pt-4 pb-2">
+      <ng-container *ngFor="let tech of techs">
+        <span
+          class="inline-block bg-bage bage-text rounded-full px-3 py-1 text-sm font-semibold tittle-card mr-2 mb-2"
+          >{{ tech }}</span
+        >
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+.img-diploma {
+  width: 500px !important;
+  height: 300px !important;
+  border-radius: 15px;
+}
+
+.bg-bagde {
+  background: linear-gradient(
+    357deg,
+    rgba(2, 0, 36, 0.59) 0%,
+    rgb(9, 9, 121) 35%
+  );
+  border-radius: 15px;
+  /* background: linear-gradient(
+    180deg,
+    rgba(52, 92, 222, 0.97) 80%,
+    rgb(93, 110, 219) 10%
+  );*/
+}
+
+.bage-text {
+  color: rgb(187, 201, 219);
+}
+
+.border-radius-card {
+  border-radius: 10px;
+}

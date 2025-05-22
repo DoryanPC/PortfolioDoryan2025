@@ -1,0 +1,38 @@
+<div
+  class="max-w-md bg-card-experience rounded-xl shadow-md overflow-hidden md:max-w-6xl sm:max-w-2xl lg:max-w-4xl mt-15 md:ml-[15%]"
+  [@fadeInOnScroll]="isVisible ? 'visible' : 'hidden'"
+  (window:scroll)="onScroll()"
+>
+  <div class="md:flex items-stretch">
+    <div class="md:shrink-0 pt-6 pl-5">
+      <img
+        class="object-cover"
+        width="120rem"
+        height="130rem"
+        [src]="'../../../assets/' + Pathimg"
+      />
+    </div>
+    <div class="p-8 flex flex-col justify-between h-full">
+      <div>
+        <a
+          href="https://www.bcr.gob.sv"
+          target="_blank"
+          class="uppercase tracking-wide text-sm hover:underline tittle-card font-semibold"
+        >
+          {{ Workplace }}
+        </a>
+        <div
+          class="text-white block mt-1 text-lg leading-tight font-medium subtittle-card"
+        >
+          {{ Job }}
+        </div>
+        <p class="mt-2 text-white">
+          {{ Description }}
+        </p>
+      </div>
+      <p id="duration" class="mt-4 text-white font-bold">
+        {{ Duration }}
+      </p>
+    </div>
+  </div>
+</div>

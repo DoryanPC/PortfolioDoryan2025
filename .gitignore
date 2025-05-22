@@ -10,6 +10,16 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+package-lock.json
+.pnpm-debug.log*
+
+# Angular
+.angular/
+dist/
+out-tsc/
+*.ngsummary.json
+*.ngfactory.ts
+*.ngstyle.ts
 
 # IDEs and editors
 .idea/
@@ -40,3 +50,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+

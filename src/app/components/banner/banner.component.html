@@ -1,0 +1,55 @@
+<div
+  class="bg-black text-white pt-20 px-10 shadow-lg relative overflow-hidden"
+  style="height: 100vh"
+>
+  <!-- Fondo animado: spheres, grid, glow, noise -->
+  <div class="gradient-background pointer-events-none">
+    <div class="gradient-sphere sphere-1"></div>
+    <div class="gradient-sphere sphere-2"></div>
+    <div class="gradient-sphere sphere-3"></div>
+    <div class="glow"></div>
+    <div class="grid-overlay"></div>
+    <div class="noise-overlay"></div>
+    <div
+      class="particles-container"
+      id="particles-container"
+      #particlesContainer
+    ></div>
+  </div>
+
+  <!-- Contenido: nombre, rol e imagen -->
+  <div
+    class="relative z-10 flex flex-col md:flex-row items-center justify-center text-center gap-4 h-full px-6 md:px-12 sm:px-12"
+    id="text-banner"
+  >
+    <div class="md:w-1/2">
+      <p
+        class="banner-titulo lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-bold mb-2 text-white"
+      >
+        {{ textoNombreVisible }}
+      </p>
+      <p
+        class="lg:text-5xl md:text-4xl sm:text-3xl text-2xl font-bold mt-3 mb-5"
+      >
+        {{ textoRolVisible }}
+      </p>
+      <p
+        class="banner-description opacity-0 translate-y-5 transition-all duration-2000 ease-out lg:text-3xl md:text-2xl sm:text-1xl text-1xl"
+        [ngClass]="{ 'opacity-100 translate-y-0': mostrarLabel }"
+        style="margin-top: 2rem"
+      >
+        Let's develop intuitive software to make user tasks easier
+      </p>
+    </div>
+
+    <div class="md:w-1/2 flex flex-col items-center">
+      <img
+        src="../../../assets/foto_doryan.jpeg"
+        class="rounded-full opacity-0 translate-y-5 transition-all duration-4400 ease-out delay-4000 lg:w-100 lg:h-100 md:w-60 md:h-60"
+        alt="foto-doryan"
+        (load)="mostrarIMG = true"
+        [ngClass]="{ 'opacity-100 translate-y-0': mostrarIMG }"
+      />
+    </div>
+  </div>
+</div>

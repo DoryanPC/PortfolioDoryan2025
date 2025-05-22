@@ -1,0 +1,25 @@
+<div class="bg-section-certifications" style="height: auto">
+  <div class="p-5 md:flex-row gap-4">
+    <div
+      class="md:w-full lg:w-full sm:w-full rounded-lg flex flex-col items-center justify-center mt-25 mb-10"
+    >
+      <p
+        class="tittle-certification text-white lg:text-8xl md:text-8xl sm:mt-5 text-5xl"
+      >
+        Courses
+      </p>
+    </div>
+  </div>
+  <div class="p-5 flex flex-row flex-wrap gap-4 justify-center">
+    <ng-container *ngFor="let project of Projects">
+      <div class="md:w-1/4 lg:w-1/4 sm:w-2/4 rounded-lg flex flex-col">
+        <app-card-certification
+          [Name]="project.Name!"
+          [academy]="project.Academy!"
+          [Pathimg]="project.pathimg!"
+        >
+        </app-card-certification>
+      </div>
+    </ng-container>
+  </div>
+</div>

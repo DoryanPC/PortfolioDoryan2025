@@ -1,0 +1,27 @@
+<div class="bg-section-projects" style="padding: 4rem 0 13rem 0">
+  <div class="p-5 md:flex-row gap-4">
+    <div
+      class="md:w-full lg:w-full sm:w-full rounded-lg flex flex-col items-center justify-center mt-10 mb-10"
+    >
+      <p
+        class="tittle-projects text-white lg:text-8xl md:text-8xl text-5xl sm:mt-5"
+      >
+        Some Projects
+      </p>
+    </div>
+  </div>
+  <div class="p-5 flex flex-row flex-wrap gap-4 justify-center">
+    <ng-container *ngFor="let project of Projects">
+      <div class="md:w-1/4 lg:w-1/4 sm:w-3/4 rounded-lg flex flex-col">
+        <app-card-project
+          [Name]="project.Name!"
+          [client]="project.client!"
+          [Description]="project.Description!"
+          [Pathimg]="project.pathimg!"
+          [techs]="project.techs!"
+        >
+        </app-card-project>
+      </div>
+    </ng-container>
+  </div>
+</div>

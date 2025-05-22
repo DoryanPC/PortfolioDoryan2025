@@ -1,0 +1,17 @@
+.bg-card-experience {
+  /* background-color: #170d3c;*/
+  background: linear-gradient(
+    360deg,
+    rgba(42, 51, 183, 0.8),
+    rgba(41, 67, 145, 0.4)
+  );
+}
+
+.tittle-card {
+  color: rgb(187, 201, 219);
+  font-size: 1.3rem;
+}
+
+.subtittle-card {
+  color: rgb(148 163 184);
+}
