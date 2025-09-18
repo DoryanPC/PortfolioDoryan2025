@@ -6,22 +6,53 @@
       <p
         class="tittle-projects text-white lg:text-8xl md:text-8xl text-5xl sm:mt-5"
       >
-        Some Projects
+        {{ this.appStore.Translation().TitleProject }}
       </p>
     </div>
   </div>
-  <div class="p-5 flex flex-row flex-wrap gap-4 justify-center">
-    <ng-container *ngFor="let project of Projects">
-      <div class="md:w-1/4 lg:w-1/4 sm:w-3/4 rounded-lg flex flex-col">
-        <app-card-project
-          [Name]="project.Name!"
-          [client]="project.client!"
-          [Description]="project.Description!"
-          [Pathimg]="project.pathimg!"
-          [techs]="project.techs!"
-        >
-        </app-card-project>
-      </div>
-    </ng-container>
+
+  <div class="relative p-5">
+    <button
+      class="absolute left-20 top-1/2 transform -translate-y-1/2 z-10 p-2 rounded-full shadow"
+      (click)="paginaAnterior()"
+    >
+      <img
+        src="../../../assets/flecha-derech.png"
+        alt="cambios"
+        [class.hover-arrows]="paginaActual > 1"
+        width="40px"
+        height="40px"
+      />
+    </button>
+
+    <!-- CONTENEDOR DE CARDS -->
+    <div class="flex flex-row flex-wrap gap-4 justify-center">
+      <ng-container *ngFor="let project of this.items">
+        <div class="md:w-1/4 lg:w-1/4 sm:w-3/4 rounded-lg flex flex-col">
+          <app-card-project
+            [Name]="project.title!"
+            [client]="project.client!"
+            [Description]="project.descripcion!"
+            [Pathimg]="project.img!"
+            [techs]="project.technologies!"
+          >
+          </app-card-project>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- FLECHA DERECHA -->
+    <button
+      class="absolute right-20 top-1/2 transform -translate-y-1/2 z-10 p-2 rounded-full shadow"
+      (click)="siguientePagina()"
+    >
+      <img
+        src="../../../assets/flecha-izq.png"
+        alt="cambios"
+        [class.hover-arrows]="paginaActual !== totalPaginas()"
+        width="40px"
+        height="40px"
+      />
+    </button>
   </div>
 </div>

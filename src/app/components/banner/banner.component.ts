@@ -1,8 +1,12 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Renderer2,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { TraduccionService } from '../../service/traslation.service';
-import { TraductionStore } from '../../store/traduction.store';
+import { AppStore } from '../../store/traduction.store';
 
 @Component({
   selector: 'app-banner',
@@ -25,18 +29,12 @@ export class BannerComponent {
 
   traducciones: any = {};
 
+  readonly appStore = inject(AppStore);
+
   @ViewChild('particlesContainer', { static: true }) containerRef!: ElementRef;
   private particleCount = 80;
 
-  constructor(
-    private traductionservice: TraduccionService,
-    private traductionstore: TraductionStore,
-    private renderer: Renderer2
-  ) {
-    this.traductionservice.traducciones$.subscribe((data) => {
-      this.traducciones = data;
-    });
-  }
+  constructor(private renderer: Renderer2) {}
 
   async ngOnInit() {
     this.AnimateBanner();
@@ -45,7 +43,7 @@ export class BannerComponent {
     this.ShowDescription();
   }
 
-  AnimateBanner() {
+  private AnimateBanner(): void {
     for (let i = 0; i < this.particleCount; i++) {
       this.createParticle();
     }
@@ -126,9 +124,5 @@ export class BannerComponent {
     setTimeout(() => {
       this.mostrarLabel = true;
     }, 4000); // Ajusta el delay según lo que desees
-  }
-
-  cambiarIdioma(idioma: 'en' | 'es') {
-    this.traductionstore.setIdioma(idioma);
   }
 }

@@ -5,14 +5,19 @@
   <div
     class="lg:w-1/2 md:w-1/2 sm:w-3/4 w-3/4 mx-auto lg:order-1 md:order-1 sm:order-2 order-2 rounded-lg flex flex-col items-center md:p-3 sm:p-0 mt-10 mb-10"
   >
-    <ng-container *ngFor="let experience of Experiences; let i = index">
+    <ng-container
+      *ngFor="
+        let experience of this.appStore.Translation().Experiences;
+        let i = index
+      "
+    >
       <app-card-experience
-        [Workplace]="experience.workplace!"
-        [Job]="experience.job!"
+        [Workplace]="experience.title!"
+        [Job]="experience.Position!"
         [Description]="experience.Description!"
-        [Pathimg]="experience.Pathimg!"
+        [Pathimg]="experience.ImgName!"
         [UrlWorkplace]="experience.UrlWorkplace!"
-        [Duration]="experience.duration!"
+        [Duration]="experience.Duration!"
       >
       </app-card-experience>
     </ng-container>
@@ -23,12 +28,12 @@
     <p
       class="tittle-experience text-white lg:text-8xl md:text-8xl text-5xl sm:mt-5"
     >
-      Work
+      {{ this.appStore.Translation().TitleExperiences[0] }}
     </p>
     <p
       class="tittle-experience text-white lg:text-8xl md:text-8xl text-5xl sm:text-5xl"
     >
-      experience
+      {{ this.appStore.Translation().TitleExperiences[1] }}
     </p>
   </div>
 </div>

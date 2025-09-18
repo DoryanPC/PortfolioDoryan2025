@@ -2,6 +2,21 @@
   background: linear-gradient(to right, #0f172a, #9333ea);
 }
 
+.banner-titulo {
+  font-size: clamp(3rem, 2.5vw, 8rem);
+}
+
+.banner-role {
+  font-size: clamp(2.5rem, 2vw, 7rem);
+}
+
+.banner-description {
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  font-size: clamp(2rem, 1.5vw, 3.5rem);
+}
+
 /* prueba */
 
 * {
@@ -37,12 +52,6 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-}
-
-.banner-description {
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 2rem;
 }
 
 .gradient-background {

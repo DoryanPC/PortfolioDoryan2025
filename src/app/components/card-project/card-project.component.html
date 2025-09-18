@@ -4,9 +4,10 @@
   <img
     class="img-card-project w-full h-auto"
     [ngStyle]="{
-      filter: isFoggy
-        ? 'blur(8px) brightness(75%)'
-        : 'blur(0px) brightness(100%)',
+      filter:
+        isFoggy && !appStore.Enfocada()
+          ? 'blur(8px) brightness(75%)'
+          : 'blur(0px) brightness(100%)',
       transition: 'filter 2.5s ease-in-out 0.5s'
     }"
     [src]="'../../../assets/Project/' + Pathimg"
@@ -36,7 +37,7 @@
     <div id="row-badges" class="px-6 pt-4 pb-2">
       <ng-container *ngFor="let tech of techs">
         <span
-          class="inline-block bg-bage bage-text rounded-full px-3 py-1 text-sm font-semibold tittle-card mr-2 mb-2"
+          class="inline-block bg-bage bage-text rounded-full px-3 py-1 text-sm font-semibold tittle-card-tech mr-2 mb-2"
           >{{ tech }}</span
         >
       </ng-container>

@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { CardProjectComponent } from '../card-project/card-project.component';
 import { CommonModule } from '@angular/common';
+import { AppStore } from '../../store/traduction.store';
 
 @Component({
   selector: 'app-section-projects',
@@ -11,31 +12,38 @@ import { CommonModule } from '@angular/common';
 })
 export class SectionProjectsComponent {
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
+  readonly appStore = inject(AppStore);
 
-  Projects = [
-    {
-      Name: 'Official WebSite Censo 2024',
-      client: 'Banco Central de Reserva de El Salvador',
-      Description:
-        'Official Website for National Censo of Poblation and vivienda',
-      techs: ['PHP', 'Bootstrap', 'CSS', 'HTML', 'JS'],
-      pathimg: 'directoriomingob.png',
-    },
-    {
-      Name: ' Fuerza Laboral - RRHH System ',
-      client: 'Ministry of health of El Salvador',
-      Description: 'System for human resource management in the institution',
-      techs: ['PHP', 'Bootstrap', 'CSS', 'HTML', 'JS'],
-      pathimg: 'geoportal.png',
-    },
-    {
-      Name: ' Telephone directory ',
-      client: 'Ministry of Goverment of El Salvador',
-      Description: 'System for human resource management in the institution',
-      techs: ['PHP', 'Bootstrap', 'CSS', 'HTML', 'JS'],
-      pathimg: 'websiteatle.png',
-    },
-  ];
+  itemsPorPagina: number = 3;
+  paginaActual: number = 1;
+  Desofuscado: Boolean = false;
+
+  get items(): any[] {
+    const allItems = this.appStore.Translation().Projects;
+    const startIndex = (this.paginaActual - 1) * this.itemsPorPagina;
+    return allItems.slice(startIndex, startIndex + this.itemsPorPagina);
+  }
+
+  totalPaginas(): number {
+    const total: number = this.appStore.Translation().Projects.length;
+    return Math.ceil(total / this.itemsPorPagina);
+  }
+
+  esUltimaPagina(): boolean {
+    return this.paginaActual === this.totalPaginas();
+  }
+
+  siguientePagina() {
+    if (!this.esUltimaPagina()) {
+      this.paginaActual++;
+    }
+  }
+
+  paginaAnterior() {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+    }
+  }
 
   scrollLeft() {
     this.scrollContainer.nativeElement.scrollBy({
@@ -49,5 +57,9 @@ export class SectionProjectsComponent {
       left: 300,
       behavior: 'smooth',
     });
+  }
+
+  GoProject() {
+    console.log('cambios');
   }
 }

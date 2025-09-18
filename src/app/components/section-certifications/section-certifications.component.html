@@ -6,20 +6,53 @@
       <p
         class="tittle-certification text-white lg:text-8xl md:text-8xl sm:mt-5 text-5xl"
       >
-        Courses
+        {{ this.appStore.Translation().TitleCertification }}
       </p>
     </div>
   </div>
-  <div class="p-5 flex flex-row flex-wrap gap-4 justify-center">
-    <ng-container *ngFor="let project of Projects">
-      <div class="md:w-1/4 lg:w-1/4 sm:w-2/4 rounded-lg flex flex-col">
-        <app-card-certification
-          [Name]="project.Name!"
-          [academy]="project.Academy!"
-          [Pathimg]="project.pathimg!"
-        >
-        </app-card-certification>
-      </div>
-    </ng-container>
+
+  <!--  CONTENEDOR RELATIVO PARA POSICIONAR FLECHAS Y CARDS -->
+  <div class="relative p-5">
+    <!--  FLECHA IZQUIERDA -->
+    <button
+      class="absolute left-20 top-1/2 transform -translate-y-1/2 z-10 p-2 rounded-full shadow hover:scale-105 transition"
+      (click)="paginaAnterior()"
+    >
+      <img
+        src="../../../assets/flecha-derech.png"
+        alt="anterior"
+        class="hover-arrows"
+        width="35px"
+        height="35px"
+      />
+    </button>
+
+    <!-- ⬇️ CONTENEDOR DE CARDS -->
+    <div class="flex flex-row flex-wrap gap-4 justify-center">
+      <ng-container *ngFor="let project of this.items">
+        <div class="md:w-1/4 lg:w-1/4 sm:w-2/4 rounded-lg flex flex-col">
+          <app-card-certification
+            [Name]="project.Name!"
+            [academy]="project.Academy!"
+            [Pathimg]="project.pathimg!"
+          >
+          </app-card-certification>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- ➡️ FLECHA DERECHA -->
+    <button
+      class="absolute right-20 top-1/2 transform -translate-y-1/2 z-10 p-2 rounded-full shadow hover:scale-105 transition"
+      (click)="siguientePagina()"
+    >
+      <img
+        src="../../../assets/flecha-izq.png"
+        alt="siguiente"
+        class="hover-arrows"
+        width="35px"
+        height="35px"
+      />
+    </button>
   </div>
 </div>

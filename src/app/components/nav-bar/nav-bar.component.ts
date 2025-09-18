@@ -1,10 +1,14 @@
-import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  ElementRef,
+  ViewChild,
+  inject,
+} from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
-import { TraduccionService } from '../../service/traslation.service';
-import { TraductionStore } from '../../store/traduction.store';
+import { AppStore } from '../../store/traduction.store';
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,30 +20,30 @@ import { TraductionStore } from '../../store/traduction.store';
 export class NavBarComponent {
   @ViewChild('navbar') navbarRef!: ElementRef;
 
-  LanguageSelected: string = 'EN';
+  LanguageSelected: object = {
+    name: 'English',
+    shortname: 'EN',
+    flag: 'assets/flag_usa.png',
+  };
+
   Languages = [
-    { name: 'English', flag: 'assets/flag_usa.png' },
-    { name: 'Spanish', flag: 'assets/flag_spain.png' },
+    { name: 'English', shortname: 'EN', flag: 'assets/flag_usa.png' },
+    { name: 'Spanish', shortname: 'ES', flag: 'assets/flag_spain.png' },
   ];
+
   open = false;
-
   isScrolled: boolean = window.scrollY > 10;
-
   traducciones: any = {};
 
-  constructor(
-    private traductionservice: TraduccionService,
-    private traductionstore: TraductionStore
-  ) {
-    this.traductionservice.traducciones$.subscribe((data) => {
-      console.log(data);
-
-      this.traducciones = data;
-    });
-  }
+  readonly appStore = inject(AppStore);
 
   ngAfterViewInit() {
     this.updateNavbarStyle();
+  }
+
+  selectLanguage(ShortLang: any) {
+    this.LanguageSelected = ShortLang;
+    this.appStore.changeLanguage(ShortLang.shortname);
   }
 
   @HostListener('window:scroll', [])
@@ -53,19 +57,9 @@ export class NavBarComponent {
 
     navbar.classList.toggle('bg-transparent', !this.isScrolled);
     navbar.classList.toggle('bg-navbar', this.isScrolled);
-
-    // Opcional: sombra solo al hacer scroll
     navbar.classList.toggle('shadow-lg', this.isScrolled);
   }
 
   selectedLanguage = 'English';
   selectedFlag = 'assets/flag_usa.png';
-
-  selectLanguage(lang: any) {
-    this.selectedLanguage = lang.name;
-    this.selectedFlag = lang.flag;
-    this.open = false;
-
-    this.traductionstore.setIdioma(lang.name);
-  }
 }

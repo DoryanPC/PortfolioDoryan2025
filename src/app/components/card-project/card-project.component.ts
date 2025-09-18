@@ -4,8 +4,10 @@ import {
   ElementRef,
   HostListener,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AppStore } from '../../store/traduction.store';
 
 @Component({
   selector: 'app-card-project',
@@ -27,12 +29,15 @@ export class CardProjectComponent {
 
   @ViewChild('imageElement') imageElement!: ElementRef;
 
+  readonly appStore = inject(AppStore);
+
   ngAfterViewInit() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           this.isFoggy = false;
           observer.disconnect(); // Solo una vez
+          this.SetEnfocado(true);
         }
       },
       {
@@ -41,5 +46,9 @@ export class CardProjectComponent {
     );
 
     observer.observe(this.imageElement.nativeElement);
+  }
+
+  SetEnfocado(Enfoque: boolean) {
+    this.appStore.changeEnfocado(Enfoque);
   }
 }
