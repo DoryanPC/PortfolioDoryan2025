@@ -1,21 +1,35 @@
 <div
   class="max-w-lg shadow-lg lg:mt-5 md:mt-8 sm:mt-8 mt-8 bg-card border-radius-card min-h-[40rem] h-auto flex flex-col sm:w-full"
 >
-  <img
-    class="img-card-project w-full h-auto"
-    [ngStyle]="{
-      filter:
-        isFoggy && !appStore.Enfocada()
-          ? 'blur(8px) brightness(75%)'
-          : 'blur(0px) brightness(100%)',
-      transition: 'filter 2.5s ease-in-out 0.5s'
-    }"
-    [src]="'../../../assets/Project/' + Pathimg"
-    [alt]="Name"
-    #imageElement
-  />
+  <div class="relative w-full h-auto">
+    <!-- Loader -->
+    <div
+      class="absolute inset-0 flex items-center justify-center bg-white"
+      *ngIf="!imageLoaded"
+    >
+      <div class="flex items-center gap-2 animate-heartbeat">
+        <img
+          src="../../../assets/icon_laptop.png"
+          class="h-8"
+          alt="Flowbite Logo"
+        />
+        <span class="self-center text-2xl font-semibold text-principal">
+          Doryan Dev
+        </span>
+      </div>
+    </div>
 
-  <!-- Contenedor flexible que ocupa todo el espacio restante -->
+    <img
+      [src]="'assets/Project/' + Pathimg"
+      [alt]="Name"
+      loading="lazy"
+      class="img-card-project w-full h-auto transition-opacity duration-500"
+      [class.opacity-0]="!imageLoaded"
+      (load)="imageLoaded = true"
+    />
+  </div>
+
+  <!-- Contenido del card -->
   <div class="flex flex-col justify-between flex-1">
     <div class="px-6 py-4">
       <div
@@ -33,7 +47,7 @@
       </p>
     </div>
 
-    <!-- Fila de tecnologías al final -->
+    <!-- Fila de tecnologías -->
     <div id="row-badges" class="px-6 pt-4 pb-2">
       <ng-container *ngFor="let tech of techs">
         <span

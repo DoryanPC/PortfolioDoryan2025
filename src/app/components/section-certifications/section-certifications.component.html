@@ -15,15 +15,15 @@
   <div class="relative p-5">
     <!--  FLECHA IZQUIERDA -->
     <button
-      class="absolute left-20 top-1/2 transform -translate-y-1/2 z-10 p-2 rounded-full shadow hover:scale-105 transition"
+      class="absolute left-20 top-1/2 transform -translate-y-1/2 z-10 p-2 rounded-full shadow"
       (click)="paginaAnterior()"
     >
       <img
         src="../../../assets/flecha-derech.png"
         alt="anterior"
-        class="hover-arrows"
-        width="35px"
-        height="35px"
+        [class.hover-arrows]="paginaActual > 1"
+        width="40px"
+        height="40px"
       />
     </button>
 
@@ -49,9 +49,9 @@
       <img
         src="../../../assets/flecha-izq.png"
         alt="siguiente"
-        class="hover-arrows"
-        width="35px"
-        height="35px"
+        [class.hover-arrows]="paginaActual !== totalPaginas()"
+        width="40px"
+        height="40px"
       />
     </button>
   </div>

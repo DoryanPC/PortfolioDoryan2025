@@ -2,13 +2,36 @@
   <div
     class="border-radius-card rounded overflow-hidden flex flex-col max-w-xl mx-auto"
   >
-    <img
-      height="50rem"
-      width="20rem"
-      class="img-diploma"
-      [src]="'../../../assets/Certifications/' + Pathimg"
-      alt="certification-doryan"
-    />
+    <!-- Contenedor relativo SOLO para la imagen -->
+    <div class="relative w-full h-auto">
+      <!-- Loader -->
+      <div
+        class="absolute inset-0 flex items-center justify-center bg-white"
+        *ngIf="!imageLoaded"
+      >
+        <div class="flex items-center gap-2 animate-heartbeat">
+          <img
+            src="../../../assets/icon_laptop.png"
+            class="h-8"
+            alt="Loader Logo"
+          />
+          <span class="self-center text-2xl font-semibold text-principal">
+            Doryan Dev
+          </span>
+        </div>
+      </div>
+
+      <!-- Imagen -->
+      <img
+        class="img-diploma transition-opacity duration-500"
+        [src]="'../../../assets/Certifications/' + Pathimg"
+        alt="certification-doryan"
+        [class.opacity-0]="!imageLoaded"
+        (load)="imageLoaded = true"
+      />
+    </div>
+
+    <!-- Texto del card -->
     <div class="relative -mt-16 px-10 pt-5 pb-5 bg-bagde m-10">
       <a href="#" class="font-semibold text-lg bage-text mb-2">
         {{ Name }}

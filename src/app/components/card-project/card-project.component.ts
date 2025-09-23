@@ -23,7 +23,8 @@ export class CardProjectComponent {
   @Input() Pathimg!: string;
   @Input() techs!: String[];
 
-  isFoggy = true;
+  isFoggy: boolean = true;
+  imageLoaded: boolean = false;
 
   constructor(private el: ElementRef) {}
 
