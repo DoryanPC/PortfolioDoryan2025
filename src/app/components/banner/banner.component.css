@@ -240,3 +240,61 @@ h1 {
     border-right-color: transparent;
   }
 }
+
+@media (min-width: 0px) and (max-width: 450px) {
+  .banner-titulo {
+    font-size: clamp(3rem, 2.5vw, 8rem);
+  }
+
+  .banner-role {
+    font-size: clamp(2.5rem, 2vw, 7rem);
+  }
+}
+
+@media (min-width: 450px) and (max-width: 640px) {
+  .banner-titulo {
+    font-size: clamp(3rem, 2.5vw, 8rem);
+  }
+
+  .banner-role {
+    font-size: clamp(2rem, 1.8vw, 6rem);
+  }
+
+  #text-banner {
+    margin-top: 4rem;
+  }
+}
+
+@media (min-width: 0) and (max-width: 640px) {
+  .banner-titulo {
+    font-size: clamp(2rem, 2.2vw, 4rem);
+  }
+
+  .banner-role {
+    font-size: clamp(2rem, 2.2vw, 4rem);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .banner-titulo {
+    font-size: clamp(3rem, 2.5vw, 8rem);
+  }
+
+  .banner-role {
+    font-size: clamp(2.5rem, 2vw, 7rem);
+  }
+
+  #text-banner {
+    margin-top: 3%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .banner-titulo {
+    font-size: clamp(3rem, 2.5vw, 8rem);
+  }
+
+  .banner-role {
+    font-size: clamp(2.5rem, 2vw, 7rem);
+  }
+}
